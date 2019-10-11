@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>604106070905-e82bf6ttah8j2ucjga0j2e5tmtgprmdm.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.604106070905-e82bf6ttah8j2ucjga0j2e5tmtgprmdm</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCFqyQtV_Ok-2Fy5FSLD5yFDpLKCb69ryM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>604106070905</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.2019.Jeff.G.MyCoin</string>
+	<key>PROJECT_ID</key>
+	<string>mycoin-1b0ab</string>
+	<key>STORAGE_BUCKET</key>
+	<string>mycoin-1b0ab.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:604106070905:ios:91687589c1610777</string>
+	<key>DATABASE_URL</key>
+	<string>https://mycoin-1b0ab.firebaseio.com</string>
+</dict>
+</plist>
