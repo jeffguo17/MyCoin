@@ -9,18 +9,23 @@
 import Foundation
 import UIKit
 
-class TransactionTableViewCell: UITableViewCell {
+class TransactionTableViewCell: UITableViewCell, UITextViewDelegate {
     var headerMessage: String?
     var profileImage: UIImage?
     var message: String?
+    var sender: CoinUser?
+    var recipient: CoinUser?
+    var createdCoinData = [Coin]()
+    var ownedByCoinData = [Coin]()
+    var timeStampString = "100 weeks ago"
+    var currUser: User?
+    var navigationController: UINavigationController?
     
-    fileprivate let headerView: UITextView = {
-        let textView = UITextView()
-        textView.isUserInteractionEnabled = false
+    fileprivate let headerView: unselectableTextView = {
+        let textView = unselectableTextView()
         textView.isScrollEnabled = false
+        textView.isEditable = false
         textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.textColor = .gray
-        textView.font = .systemFont(ofSize: 17)
         textView.textContainer.lineBreakMode = .byTruncatingTail
         return textView
     }()
@@ -31,6 +36,16 @@ class TransactionTableViewCell: UITableViewCell {
         imageView.contentMode = .scaleAspectFill
 
         return imageView
+    }()
+    
+    fileprivate let timeStampView: UITextView = {
+        let textView = UITextView()
+        textView.isUserInteractionEnabled = false
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.isScrollEnabled = false
+        textView.textContainer.lineBreakMode = .byTruncatingTail
+        textView.font = .systemFont(ofSize: 12)
+        return textView
     }()
     
     fileprivate let messageView: UITextView = {
@@ -48,6 +63,7 @@ class TransactionTableViewCell: UITableViewCell {
         
         self.addSubview(headerView)
         self.addSubview(profileImageView)
+        self.addSubview(timeStampView)
         self.addSubview(messageView)
         
         let profileImageViewHeight = CGFloat(50)
@@ -64,17 +80,49 @@ class TransactionTableViewCell: UITableViewCell {
         headerView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
         headerView.heightAnchor.constraint(equalToConstant: 30.0).isActive = true
         
-        messageView.topAnchor.constraint(equalTo: headerView.bottomAnchor).isActive = true
+        timeStampView.topAnchor.constraint(equalTo: headerView.bottomAnchor).isActive = true
+        timeStampView.leadingAnchor.constraint(equalTo: headerView.leadingAnchor).isActive = true
+        timeStampView.trailingAnchor.constraint(equalTo: headerView.trailingAnchor).isActive = true
+        timeStampView.heightAnchor.constraint(equalToConstant: 20.0).isActive = true
+        
+        messageView.topAnchor.constraint(equalTo: timeStampView.bottomAnchor).isActive = true
         messageView.leadingAnchor.constraint(equalTo: headerView.leadingAnchor).isActive = true
         messageView.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -15).isActive = true
         messageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
+        headerView.delegate = self
+    }
+    
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        guard let sender = self.sender, let recipient = self.recipient, let currUser = self.currUser, let navigationController = self.navigationController else { return false }
+        if URL.absoluteString == "senderNameTapped" {
+            showProfileDetailVC(selectedUser: sender, createdCoinData: self.createdCoinData, ownedByCoinData: self.ownedByCoinData, currUser: currUser, navigationController: navigationController)
+        } else if URL.absoluteString == "recipientNameTapped" {
+            showProfileDetailVC(selectedUser: recipient, createdCoinData: self.createdCoinData, ownedByCoinData: self.ownedByCoinData, currUser: currUser, navigationController: navigationController)
+        }
+        return false
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        if let headerMessage = headerMessage {
-            headerView.text = headerMessage
+        
+        if let senderName = self.sender?.fullName, let recipientName = self.recipient?.fullName {
+            let senderNameText = NSMutableAttributedString(string: senderName)
+            senderNameText.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 17), range: NSMakeRange(0, senderNameText.length))
+            senderNameText.addAttribute(NSAttributedString.Key.link, value: "senderNameTapped", range: NSMakeRange(0, senderNameText.length))
+            
+            let recipientNameText = NSMutableAttributedString(string: recipientName)
+            recipientNameText.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 17), range: NSMakeRange(0, recipientNameText.length))
+            recipientNameText.addAttribute(NSAttributedString.Key.link, value: "recipientNameTapped", range: NSMakeRange(0, recipientNameText.length))
+            
+            let message = NSMutableAttributedString(string: " paid ")
+            message.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 17), range: NSMakeRange(0, message.length))
+            message.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.gray, range: NSMakeRange(0, message.length))
+            
+            senderNameText.append(message)
+            senderNameText.append(recipientNameText)
+            
+            headerView.attributedText = senderNameText
         }
         
         if let message = message {
@@ -83,6 +131,8 @@ class TransactionTableViewCell: UITableViewCell {
         if let profileImage = profileImage {
             profileImageView.image = profileImage
         }
+        
+        timeStampView.text = timeStampString
     }
     
     required init?(coder aDecoder: NSCoder) {

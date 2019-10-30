@@ -7,17 +7,20 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class ShowCoinTableViewCell: UITableViewCell {
 
     var nameText: String?
     var coinImage: UIImage?
+    var amountNum: String?
     
     fileprivate let nameView: UILabel = {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isUserInteractionEnabled = false
         view.font = .systemFont(ofSize: 17)
+        view.textColor = UIColor.flatBlack
         return view
     }()
     
@@ -29,11 +32,22 @@ class ShowCoinTableViewCell: UITableViewCell {
         return imageView
     }()
     
+    fileprivate let amountView: UILabel = {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isUserInteractionEnabled = false
+        view.font = .systemFont(ofSize: 17)
+        view.textAlignment = .right
+        view.textColor = UIColor.flatOrange
+        return view
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         self.addSubview(nameView)
         self.addSubview(coinImageView)
+        self.addSubview(amountView)
         
         let coinImageViewSize = CGFloat(45)
         
@@ -45,9 +59,14 @@ class ShowCoinTableViewCell: UITableViewCell {
         coinImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         
         nameView.leadingAnchor.constraint(equalTo: coinImageView.trailingAnchor, constant: 15).isActive = true
-        nameView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        nameView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -90).isActive = true
         nameView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         nameView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
+        amountView.leadingAnchor.constraint(equalTo: nameView.trailingAnchor).isActive = true
+        amountView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15).isActive = true
+        amountView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        amountView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
     }
     
     override func prepareForReuse() {
@@ -59,6 +78,9 @@ class ShowCoinTableViewCell: UITableViewCell {
         
         self.nameView.text = nil
         self.nameText = nil
+        
+        self.amountView.text = nil
+        self.amountNum = nil
     }
     
     override func layoutSubviews() {
@@ -69,6 +91,10 @@ class ShowCoinTableViewCell: UITableViewCell {
         
         if let coinImage = coinImage {
             coinImageView.image = coinImage
+        }
+        
+        if let amountNum = amountNum {
+            amountView.text = "\(amountNum)"
         }
     }
     

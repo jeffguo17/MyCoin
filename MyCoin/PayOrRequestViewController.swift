@@ -14,12 +14,13 @@ class PayOrRequestViewController: UIViewController, UITextViewDelegate, UITextFi
     var ownedByCoinData = [Coin]()
     var selectedCoin: Coin?
     var currUser: User?
+    var recipientPerson: RecentPerson?
+    var showOnce = false
     
     fileprivate let recipientTextView: UITextField = {
         let view = UITextField()
         view.isUserInteractionEnabled = false
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.text = "To: 1234567890"
         view.font = .systemFont(ofSize: 24)
         view.textColor = .black
         return view
@@ -31,8 +32,6 @@ class PayOrRequestViewController: UIViewController, UITextViewDelegate, UITextFi
         view.backgroundColor = .lightGray
         return view
     }()
-    
-    var userSelectedCoinImage = false
     
     fileprivate let coinImageView: UIImageView = {
         let view = UIImageView()
@@ -94,6 +93,7 @@ class PayOrRequestViewController: UIViewController, UITextViewDelegate, UITextFi
         payButton.translatesAutoresizingMaskIntoConstraints = false
         payButton.addTarget(self, action: #selector(payButtonTapped), for: .touchUpInside)
         
+        /*
         let requestButton = UIButton()
         requestButton.backgroundColor = UIView().tintColor
         requestButton.setTitle("Request", for: .normal)
@@ -104,25 +104,30 @@ class PayOrRequestViewController: UIViewController, UITextViewDelegate, UITextFi
         let lineSeparator = UIView()
         lineSeparator.translatesAutoresizingMaskIntoConstraints = false
         lineSeparator.backgroundColor = .white
-        
+        */
+ 
         view.addSubview(payButton)
-        view.addSubview(requestButton)
-        view.addSubview(lineSeparator)
+        //view.addSubview(requestButton)
+        //view.addSubview(lineSeparator)
         
+        /*
         requestButton.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         requestButton.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         requestButton.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         requestButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5).isActive = true
-        
+        */
+ 
         payButton.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        payButton.leadingAnchor.constraint(equalTo: requestButton.trailingAnchor).isActive = true
+        payButton.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         payButton.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         payButton.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
+        /*
         lineSeparator.leadingAnchor.constraint(equalTo: requestButton.trailingAnchor).isActive = true
         lineSeparator.topAnchor.constraint(equalTo: requestButton.topAnchor, constant: 10).isActive = true
         lineSeparator.bottomAnchor.constraint(equalTo: requestButton.bottomAnchor, constant: -10).isActive = true
         lineSeparator.widthAnchor.constraint(equalToConstant: 2).isActive = true
+        */
         
         return view
     }()
@@ -135,6 +140,16 @@ class PayOrRequestViewController: UIViewController, UITextViewDelegate, UITextFi
             coinImageView.image = #imageLiteral(resourceName: coin.imageURL)
         } else {
             coinImageView.sd_setImage(with: URL(string: coin.imageURL), placeholderImage: #imageLiteral(resourceName: "exchange"))
+        }
+        amountTextField.textColor = .lightGray
+        amountTextField.text = getAmountStr(coin: coin)
+    }
+    
+    fileprivate func getAmountStr(coin: Coin) -> String {
+        if coin.amount == -1 {
+            return "999..."
+        } else {
+            return roundAmountNum(amount: coin.amount)
         }
     }
     
@@ -157,17 +172,32 @@ class PayOrRequestViewController: UIViewController, UITextViewDelegate, UITextFi
     }
     
     @objc fileprivate func payButtonTapped() {
-        print("pay")
-        guard let currUser = self.currUser, let selectedCoin = self.selectedCoin, let amountText = amountTextField.text else { return }
+        if self.coinImageView.image == #imageLiteral(resourceName: "multiCoin") {
+            self.presentShowCoinsVC()
+            return
+        }
+        
+        guard let currUser = self.currUser, let selectedCoin = self.selectedCoin else { return }
+        
         if checkAmountAndNote() {
-            FirebaseHelper.sharedInstance.payUser(withPhoneNumber: "+14155357837", message: noteTextView.text, user: currUser, selectedCoin: selectedCoin, amount: amountText, viewController: self) {
-                    
+            guard let amountText = amountTextField.text, let amountNum = Double(amountText) else { return }
+            
+            if SubtractCoinAmount(currCoin: selectedCoin, amount: amountNum) < 0 && selectedCoin.amount != -1 {
+                showAlertMessage(title: "Please enter an amount less than \(selectedCoin.amount).", message: "", actionMessage: "OK", navigationController: self.navigationController ?? nil)
+                return
+            }
+            
+            FirebaseHelper.sharedInstance.payUser(withPhoneNumber: "+14155357837", message: noteTextView.text, currUser: currUser, selectedCoin: selectedCoin, amount: amountText, viewController: self) {
+                if let mainVC = self.navigationController?.viewControllers.first as? MainViewController {
+                    mainVC.transUpdate = true
+                }
+                self.navigationController?.popToRootViewController(animated: true)
             }
         }
     }
     
     @objc fileprivate func requestButtonTapped() {
-        print("request")
+        showAlertMessage(title: "Coming Soon!", message: "", actionMessage: "OK", navigationController: self.navigationController ?? nil)
         if checkAmountAndNote() {
             
         }
@@ -184,27 +214,44 @@ class PayOrRequestViewController: UIViewController, UITextViewDelegate, UITextFi
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if userSelectedCoinImage == false && amountTextField == textField && self.coinImageView.image == #imageLiteral(resourceName: "multiCoin") {
+        if showOnce == false && amountTextField == textField && self.coinImageView.image == #imageLiteral(resourceName: "multiCoin") {
             presentShowCoinsVC()
-            userSelectedCoinImage = true
+            showOnce = true
+        } else {
+            if amountTextField.textColor == UIColor.lightGray {
+                let endPosition: UITextPosition = amountTextField.endOfDocument
+                DispatchQueue.main.async {
+                    self.amountTextField.selectedTextRange = self.amountTextField.textRange(from: endPosition, to: endPosition)
+                }
+            }
         }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        guard let selectedCoin = selectedCoin else { return }
+        
+        if amountTextField.text?.isEmpty ?? false {
+            amountTextField.text = getAmountStr(coin: selectedCoin)
+            amountTextField.textColor = UIColor.lightGray
+            return
+        }
+        
         if textField == amountTextField {
             guard let amountText = amountTextField.text, let amount = Double(amountText) else { return }
         
-            let formatter = NumberFormatter()
-            formatter.minimumFractionDigits = 0
-            formatter.maximumFractionDigits = 7
-            formatter.minimumIntegerDigits = 1
-            amountTextField.text = formatter.string(from: NSNumber(value: amount))
+            amountTextField.text = roundAmountNum(amount: amount)
         }
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if self.coinImageView.image == #imageLiteral(resourceName: "multiCoin") {
             showAlertMessage(title: "Please choose a coin.", message: "", actionMessage: "OK", navigationController: self.navigationController ?? nil)
+            return true
+        }
+        
+        if amountTextField.textColor == UIColor.lightGray {
+            amountTextField.text = nil
+            amountTextField.textColor = UIColor.black
         }
         return true
     }
@@ -243,6 +290,10 @@ class PayOrRequestViewController: UIViewController, UITextViewDelegate, UITextFi
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
         self.title = "Pay or Request"
+        
+        let recipientName = self.recipientPerson?.fullName ?? "A A"
+        
+        recipientTextView.text = "To: " + recipientName
         
         view.addSubview(recipientTextView)
         view.addSubview(lineSeparator)

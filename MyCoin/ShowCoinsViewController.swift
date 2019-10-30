@@ -7,14 +7,17 @@
 //
 
 import UIKit
+import SideMenu
 
-class ShowCoinsViewController: UIViewController {
+class ShowCoinsViewController: SideMenuLogicViewController {
     
     let coinsCellId = "coinsCell"
     var createdCoinData = [Coin]()
     var ownedByCoinData = [Coin]()
     var coinData = [[Coin]]()
     var payOrRequest = false
+    var currUser: User?
+    var leftMenuNavigationController: SideMenuNavigationController?
     
     weak var delegate: ShowCoinsVCDelegate?
     
@@ -27,7 +30,11 @@ class ShowCoinsViewController: UIViewController {
     }()
     
     @objc func addCoin() {
-        self.navigationController?.pushViewController(AddCoinViewController(), animated: true)
+        guard let currUser = self.currUser else { return }
+        
+        let addCoinVC = AddCoinViewController()
+        addCoinVC.currUser = currUser
+        self.navigationController?.pushViewController(addCoinVC, animated: true)
     }
 
     override func viewDidLoad() {
@@ -46,6 +53,7 @@ class ShowCoinsViewController: UIViewController {
         
         if payOrRequest == false {
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addCoin))
+            addSideMenu()
         }
         
         view.addSubview(coinsTableView)
@@ -70,6 +78,21 @@ class ShowCoinsViewController: UIViewController {
             self.coinsTableView.deselectRow(at: index, animated: true)
         }
     }
+    
+    @objc fileprivate func showSideMenu() {
+        if let leftMenuNavigationController = self.leftMenuNavigationController {
+            present(leftMenuNavigationController, animated: true, completion: nil)
+        }
+    }
+    
+    fileprivate func addSideMenu() {
+        let btnShowMenu = UIButton(type: .system)
+        btnShowMenu.setImage(drawHamburgerIcon(), for: UIControl.State())
+        btnShowMenu.frame = CGRect(x: 0, y: 0, width: 22, height: 25)
+        btnShowMenu.addTarget(self, action: #selector(showSideMenu), for: .touchUpInside)
+        let customBarItem = UIBarButtonItem(customView: btnShowMenu)
+        self.navigationItem.leftBarButtonItem = customBarItem;
+    }
 }
 
 extension ShowCoinsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -82,6 +105,8 @@ extension ShowCoinsViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: coinsCellId, for: indexPath) as! ShowCoinTableViewCell
         
         cell.nameText = self.coinData[indexPath.section][indexPath.row].name
+        
+        cell.amountNum = formatAmountToStr(amount: self.coinData[indexPath.section][indexPath.row].amount)
         
         if self.coinData[indexPath.section][indexPath.row].imageURL.isEmpty {
             cell.coinImage = #imageLiteral(resourceName: "exchange")
@@ -111,9 +136,10 @@ extension ShowCoinsViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         let showCoinDetailsVC = ShowCoinDetailsViewController()
-        showCoinDetailsVC.coinImageURL = self.coinData[indexPath.section][indexPath.row].imageURL
-        showCoinDetailsVC.coinName = self.coinData[indexPath.section][indexPath.row].name
-            
+        showCoinDetailsVC.currCoin = self.coinData[indexPath.section][indexPath.row]
+        showCoinDetailsVC.currUser = self.currUser
+        showCoinDetailsVC.createdCoinData = self.createdCoinData
+        showCoinDetailsVC.ownedByCoinData = self.ownedByCoinData
         self.navigationController?.pushViewController(showCoinDetailsVC, animated: true)
     }
     

@@ -21,8 +21,8 @@ class ShowRecipientTableViewCell: UITableViewCell {
         return view
     }()
     
-    fileprivate let profileImageView: UIImageView = {
-        let imageView = UIImageView()
+    let profileImageView: UIImageView = {
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         

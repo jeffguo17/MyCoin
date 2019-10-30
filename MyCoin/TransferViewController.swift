@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import PhoneNumberKit
 
 class TransferViewController: UIViewController, UITextFieldDelegate {
     
     var createdCoinData = [Coin]()
     var ownedByCoinData = [Coin]()
+    var recentPeopleData = [RecentPerson]()
     var currUser: User?
     
     fileprivate let searchView: UITextField = {
@@ -36,6 +38,7 @@ class TransferViewController: UIViewController, UITextFieldDelegate {
     fileprivate let recipientTableView: UITableView = {
         let tableView = UITableView()
         
+        tableView.tableFooterView = UIView(frame: .zero)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         return tableView
@@ -43,6 +46,10 @@ class TransferViewController: UIViewController, UITextFieldDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if let index = self.recipientTableView.indexPathForSelectedRow {
+            self.recipientTableView.deselectRow(at: index, animated: true)
+        }
         
         searchView.becomeFirstResponder()
     }
@@ -84,34 +91,69 @@ class TransferViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-    
+        
         guard let text = textField.text else { return true }
         
-        if text.isPhoneNumber {
-            let payOrRequestVC = PayOrRequestViewController()
-            payOrRequestVC.createdCoinData = self.createdCoinData
-            payOrRequestVC.ownedByCoinData = self.ownedByCoinData
-            payOrRequestVC.currUser = self.currUser
-            self.navigationController?.pushViewController(payOrRequestVC, animated: false)
+        // TODO:
+        //let index = text.index(text.startIndex, offsetBy: 0)
+        //let firstCharacter = text[index]
+        //if (firstCharacter >= "a" && firstCharacter <= "z") || (firstCharacter >= "A" && firstCharacter <= "Z") {
+        //
+        //}
+        
+        do {
+            let phoneNumberKit = PhoneNumberKit()
+            let phoneNumber = try phoneNumberKit.parse(text, withRegion: "US")
+            //let formattedNumber: String = phoneNumberKit.format(phoneNumber, toType: .national)
+            
+            
+            let firebaseNumber = "+1" + String(phoneNumber.nationalNumber)
+            
+            //Check if number is yourself
+            
+            FirebaseHelper.sharedInstance.getUserProfile(withPhoneNumber: firebaseNumber) { (recipientUser) in
+                guard let recipientUser = recipientUser else {
+                    textField.becomeFirstResponder()
+                    showAlertMessage(title: "Phone number is not registered in our system", message: "", actionMessage: "OK", navigationController: self.navigationController)
+                    return
+                }
+                
+                guard let currUser = self.currUser else { return }
+                if recipientUser.id == currUser.id {
+                    textField.becomeFirstResponder()
+                    showAlertMessage(title: "You cannot charge yourself", message: "", actionMessage: "OK", navigationController: self.navigationController)
+                    return
+                }
+                
+                let recipientPerson = RecentPerson(fullName: FirebaseHelper.sharedInstance.getPrettyName(firstName: recipientUser.firstName, lastName: recipientUser.lastName), profileImage: recipientUser.profileImage, id: recipientUser.id)
+                
+                showPayOrRequestVC(createdCoinData: self.createdCoinData, ownedByCoinData: self.ownedByCoinData, currUser: self.currUser, recipientPerson: recipientPerson, navigationController: self.navigationController)
+            }
+        } catch {
+            textField.becomeFirstResponder()
+            showAlertMessage(title: "Please enter a valid US phone number", message: "", actionMessage: "OK", navigationController: self.navigationController)
         }
         
         return true
     }
-
 }
 
 extension TransferViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return self.recentPeopleData.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 35
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        showPayOrRequestVC(createdCoinData: self.createdCoinData, ownedByCoinData: self.ownedByCoinData, currUser: self.currUser, recipientPerson: self.recentPeopleData[indexPath.row], navigationController: self.navigationController)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -137,8 +179,14 @@ extension TransferViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: recipientTableViewCellId) as! ShowRecipientTableViewCell
-        cell.nameText = "Evan Biava"
-        cell.profileImage = #imageLiteral(resourceName: "person")
+        cell.nameText = self.recentPeopleData[indexPath.row].fullName
+        
+        if self.recentPeopleData[indexPath.row].profileImage == "" {
+            cell.profileImageView.setImageForName(self.recentPeopleData[indexPath.row].fullName, circular: true, textAttributes: nil, gradient: true)
+        } else {
+            cell.profileImageView.sd_setImage(with: URL(string: self.recentPeopleData[indexPath.row].profileImage), completed: nil)
+        }
+        
         cell.layoutSubviews()
         return cell
     }

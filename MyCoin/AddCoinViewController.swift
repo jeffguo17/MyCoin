@@ -11,6 +11,7 @@ import UIKit
 class AddCoinViewController: UIViewController {
 
     fileprivate let defaultAddImage = #imageLiteral(resourceName: "add_coin_image")
+    var currUser: User?
     
     fileprivate let nameTextView: UITextField = {
         let textField = UITextField()
@@ -50,18 +51,19 @@ class AddCoinViewController: UIViewController {
             return
         }
         
+        guard let currUser = self.currUser else { return }
+        
         if coinImageView.image == defaultAddImage {
-            FirebaseHelper.sharedInstance.uploadCoinToDatabase(name: name, viewController: self) { (coinId) in
+            FirebaseHelper.sharedInstance.uploadCoinToDatabase(currUser: currUser, name: name, viewController: self) { (coinId) in
                 if let mainVC = self.navigationController?.viewControllers.first as? MainViewController {
                     mainVC.addNewCoin(coin: Coin(name: name, imageURL: "", id: coinId, amount: -1) )
                 }
                 self.navigationController?.popToRootViewController(animated: true)
-                //self.dismiss(animated: true, completion: nil)
             }
         } else {
             guard let image = coinImageView.image else { return }
             FirebaseHelper.sharedInstance
-                .uploadCoinToDatabase(name: name, image: image, viewController: self) { (imageURL, coinId, error) in
+                .uploadCoinToDatabase(currUser: currUser, name: name, image: image, viewController: self) { (imageURL, coinId, error) in
                     if error == nil, let mainVC = self.navigationController?.viewControllers.first as? MainViewController {
                         mainVC.addNewCoin(coin: Coin(name: name, imageURL: imageURL, id: coinId, amount: -1))
                     }

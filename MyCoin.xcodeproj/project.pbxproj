@@ -1,0 +1,840 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1F0749FD233C1D3500778804 /* NewProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0749FC233C1D3500778804 /* NewProfileViewController.swift */; };
+		1F0A4408232DA62F00C35DD6 /* FirebaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0A4407232DA62F00C35DD6 /* FirebaseHelper.swift */; };
+		1F610A56230BC0E800CB5CB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F610A55230BC0E800CB5CB4 /* AppDelegate.swift */; };
+		1F610A58230BC0E800CB5CB4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F610A57230BC0E800CB5CB4 /* LoginViewController.swift */; };
+		1F610A5B230BC0E800CB5CB4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F610A59230BC0E800CB5CB4 /* Main.storyboard */; };
+		1F610A5D230BC0EA00CB5CB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F610A5C230BC0EA00CB5CB4 /* Assets.xcassets */; };
+		1F610A60230BC0EA00CB5CB4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F610A5E230BC0EA00CB5CB4 /* LaunchScreen.storyboard */; };
+		1F610A6B230BC0EA00CB5CB4 /* MyCoinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F610A6A230BC0EA00CB5CB4 /* MyCoinTests.swift */; };
+		1F610A76230BC0EA00CB5CB4 /* MyCoinUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F610A75230BC0EA00CB5CB4 /* MyCoinUITests.swift */; };
+		1F610A84230BCA7B00CB5CB4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F610A83230BCA7B00CB5CB4 /* GoogleService-Info.plist */; };
+		1F610A86230BCB8E00CB5CB4 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 1F610A85230BCB8E00CB5CB4 /* Podfile */; };
+		1F7013A62359716C00FA7885 /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7013A52359716C00FA7885 /* ProfileDetailViewController.swift */; };
+		1F775383235EDC13002B3772 /* TransactionDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F775382235EDC13002B3772 /* TransactionDetailCell.swift */; };
+		1F7F090E2366AB17001A71C5 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7F090D2366AB17001A71C5 /* MenuTableViewCell.swift */; };
+		1F85C8ED23659FA2007E3E73 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F85C8EC23659FA2007E3E73 /* SideMenuViewController.swift */; };
+		1F864F6F23442D46001B7AB1 /* PayOrRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F864F6E23442D46001B7AB1 /* PayOrRequestViewController.swift */; };
+		1F86631B2368AA00007E3191 /* PurchasesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F86631A2368AA00007E3191 /* PurchasesViewController.swift */; };
+		1F86631D236944A3007E3191 /* SideMenuLogicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F86631C236944A3007E3191 /* SideMenuLogicViewController.swift */; };
+		1F86631F2369473A007E3191 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F86631E2369473A007E3191 /* NotificationViewController.swift */; };
+		1F8D2101235B9D8E0074462F /* TransactionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8D2100235B9D8E0074462F /* TransactionDetailViewController.swift */; };
+		1FACE256231E503E00DA37FB /* TransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FACE255231E503E00DA37FB /* TransferViewController.swift */; };
+		1FF39BFB2335814700E34CFB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF39BFA2335814700E34CFB /* Constants.swift */; };
+		1FF5FD392328A2F3001652DD /* ShowCoinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5FD382328A2F3001652DD /* ShowCoinTableViewCell.swift */; };
+		1FF5FD3B2328A3BA001652DD /* ShowCoinsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5FD3A2328A3BA001652DD /* ShowCoinsViewController.swift */; };
+		1FF5FD412328AE1F001652DD /* ShowCoinDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5FD402328AE1F001652DD /* ShowCoinDetailsViewController.swift */; };
+		1FF97B5E23160D09002610BA /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF97B5D23160D09002610BA /* TransactionTableViewCell.swift */; };
+		1FF9D6882311304E006FC893 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF9D6872311304E006FC893 /* MainViewController.swift */; };
+		1FFA7C7D23233E2C00ADA292 /* ShowRecipientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFA7C7C23233E2C00ADA292 /* ShowRecipientTableViewCell.swift */; };
+		1FFB830B2329F39200161330 /* AddCoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFB830A2329F39200161330 /* AddCoinViewController.swift */; };
+		A2096A328C9416990F7A3309 /* Pods_MyCoinTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0B9055AB5B3C4080C7C7F3 /* Pods_MyCoinTests.framework */; };
+		AAEA3062381939EDAA140DEA /* Pods_MyCoinUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12A6BCE3FA8BA312DDB9B3C7 /* Pods_MyCoinUITests.framework */; };
+		D01E7C69EE76A7F11327942A /* Pods_MyCoin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E512F9E4CB57C264CF11EDD /* Pods_MyCoin.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1F610A67230BC0EA00CB5CB4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1F610A4A230BC0E800CB5CB4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1F610A51230BC0E800CB5CB4;
+			remoteInfo = MyCoin;
+		};
+		1F610A72230BC0EA00CB5CB4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1F610A4A230BC0E800CB5CB4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1F610A51230BC0E800CB5CB4;
+			remoteInfo = MyCoin;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0E512F9E4CB57C264CF11EDD /* Pods_MyCoin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyCoin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		12A6BCE3FA8BA312DDB9B3C7 /* Pods_MyCoinUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyCoinUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A8C625DAF49E864E40EC7FA /* Pods-MyCoinUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyCoinUITests.release.xcconfig"; path = "Target Support Files/Pods-MyCoinUITests/Pods-MyCoinUITests.release.xcconfig"; sourceTree = "<group>"; };
+		1F0749FC233C1D3500778804 /* NewProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProfileViewController.swift; sourceTree = "<group>"; };
+		1F0A4407232DA62F00C35DD6 /* FirebaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseHelper.swift; sourceTree = "<group>"; };
+		1F610A52230BC0E800CB5CB4 /* MyCoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyCoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F610A55230BC0E800CB5CB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1F610A57230BC0E800CB5CB4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		1F610A5A230BC0E800CB5CB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1F610A5C230BC0EA00CB5CB4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1F610A5F230BC0EA00CB5CB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1F610A61230BC0EA00CB5CB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F610A66230BC0EA00CB5CB4 /* MyCoinTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyCoinTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F610A6A230BC0EA00CB5CB4 /* MyCoinTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoinTests.swift; sourceTree = "<group>"; };
+		1F610A6C230BC0EA00CB5CB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F610A71230BC0EA00CB5CB4 /* MyCoinUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyCoinUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F610A75230BC0EA00CB5CB4 /* MyCoinUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoinUITests.swift; sourceTree = "<group>"; };
+		1F610A77230BC0EA00CB5CB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F610A83230BCA7B00CB5CB4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1F610A85230BCB8E00CB5CB4 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		1F7013A52359716C00FA7885 /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
+		1F775382235EDC13002B3772 /* TransactionDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailCell.swift; sourceTree = "<group>"; };
+		1F7F090D2366AB17001A71C5 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		1F85C8EC23659FA2007E3E73 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		1F864F6E23442D46001B7AB1 /* PayOrRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayOrRequestViewController.swift; sourceTree = "<group>"; };
+		1F86631A2368AA00007E3191 /* PurchasesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesViewController.swift; sourceTree = "<group>"; };
+		1F86631C236944A3007E3191 /* SideMenuLogicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuLogicViewController.swift; sourceTree = "<group>"; };
+		1F86631E2369473A007E3191 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		1F8D2100235B9D8E0074462F /* TransactionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailViewController.swift; sourceTree = "<group>"; };
+		1FACE255231E503E00DA37FB /* TransferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferViewController.swift; sourceTree = "<group>"; };
+		1FF39BFA2335814700E34CFB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		1FF5FD382328A2F3001652DD /* ShowCoinTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowCoinTableViewCell.swift; sourceTree = "<group>"; };
+		1FF5FD3A2328A3BA001652DD /* ShowCoinsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowCoinsViewController.swift; sourceTree = "<group>"; };
+		1FF5FD402328AE1F001652DD /* ShowCoinDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowCoinDetailsViewController.swift; sourceTree = "<group>"; };
+		1FF729EF230DF14600B6E20E /* MyCoin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyCoin.entitlements; sourceTree = "<group>"; };
+		1FF97B5D23160D09002610BA /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
+		1FF9D6872311304E006FC893 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		1FFA7C7C23233E2C00ADA292 /* ShowRecipientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowRecipientTableViewCell.swift; sourceTree = "<group>"; };
+		1FFB830A2329F39200161330 /* AddCoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCoinViewController.swift; sourceTree = "<group>"; };
+		3998427766B110112C583AC1 /* Pods-MyCoin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyCoin.debug.xcconfig"; path = "Target Support Files/Pods-MyCoin/Pods-MyCoin.debug.xcconfig"; sourceTree = "<group>"; };
+		8745207F431A9B62AC5DB641 /* Pods-MyCoinTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyCoinTests.debug.xcconfig"; path = "Target Support Files/Pods-MyCoinTests/Pods-MyCoinTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8C0B9055AB5B3C4080C7C7F3 /* Pods_MyCoinTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyCoinTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E27DBDD28DBAEF02259D755C /* Pods-MyCoin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyCoin.release.xcconfig"; path = "Target Support Files/Pods-MyCoin/Pods-MyCoin.release.xcconfig"; sourceTree = "<group>"; };
+		E83DBD4EAF2E490658FB986F /* Pods-MyCoinUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyCoinUITests.debug.xcconfig"; path = "Target Support Files/Pods-MyCoinUITests/Pods-MyCoinUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		E8EC4E0C0A748C512757012E /* Pods-MyCoinTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyCoinTests.release.xcconfig"; path = "Target Support Files/Pods-MyCoinTests/Pods-MyCoinTests.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1F610A4F230BC0E800CB5CB4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D01E7C69EE76A7F11327942A /* Pods_MyCoin.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F610A63230BC0EA00CB5CB4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A2096A328C9416990F7A3309 /* Pods_MyCoinTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F610A6E230BC0EA00CB5CB4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAEA3062381939EDAA140DEA /* Pods_MyCoinUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1F610A49230BC0E800CB5CB4 = {
+			isa = PBXGroup;
+			children = (
+				1F610A54230BC0E800CB5CB4 /* MyCoin */,
+				1F610A69230BC0EA00CB5CB4 /* MyCoinTests */,
+				1F610A74230BC0EA00CB5CB4 /* MyCoinUITests */,
+				1F610A53230BC0E800CB5CB4 /* Products */,
+				A607B30EA30659D6D6F4ADEE /* Pods */,
+				4D10DF228AD1330DFB5163AA /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		1F610A53230BC0E800CB5CB4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1F610A52230BC0E800CB5CB4 /* MyCoin.app */,
+				1F610A66230BC0EA00CB5CB4 /* MyCoinTests.xctest */,
+				1F610A71230BC0EA00CB5CB4 /* MyCoinUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1F610A54230BC0E800CB5CB4 /* MyCoin */ = {
+			isa = PBXGroup;
+			children = (
+				1FF729EF230DF14600B6E20E /* MyCoin.entitlements */,
+				1F610A85230BCB8E00CB5CB4 /* Podfile */,
+				1F610A83230BCA7B00CB5CB4 /* GoogleService-Info.plist */,
+				1F610A55230BC0E800CB5CB4 /* AppDelegate.swift */,
+				1F610A57230BC0E800CB5CB4 /* LoginViewController.swift */,
+				1F86631C236944A3007E3191 /* SideMenuLogicViewController.swift */,
+				1FF9D6872311304E006FC893 /* MainViewController.swift */,
+				1FF97B5D23160D09002610BA /* TransactionTableViewCell.swift */,
+				1F85C8EC23659FA2007E3E73 /* SideMenuViewController.swift */,
+				1F7F090D2366AB17001A71C5 /* MenuTableViewCell.swift */,
+				1F86631E2369473A007E3191 /* NotificationViewController.swift */,
+				1F86631A2368AA00007E3191 /* PurchasesViewController.swift */,
+				1F8D2100235B9D8E0074462F /* TransactionDetailViewController.swift */,
+				1F775382235EDC13002B3772 /* TransactionDetailCell.swift */,
+				1F0749FC233C1D3500778804 /* NewProfileViewController.swift */,
+				1FF5FD3A2328A3BA001652DD /* ShowCoinsViewController.swift */,
+				1FF5FD382328A2F3001652DD /* ShowCoinTableViewCell.swift */,
+				1FF39BFA2335814700E34CFB /* Constants.swift */,
+				1FFB830A2329F39200161330 /* AddCoinViewController.swift */,
+				1F0A4407232DA62F00C35DD6 /* FirebaseHelper.swift */,
+				1FF5FD402328AE1F001652DD /* ShowCoinDetailsViewController.swift */,
+				1F7013A52359716C00FA7885 /* ProfileDetailViewController.swift */,
+				1FACE255231E503E00DA37FB /* TransferViewController.swift */,
+				1F864F6E23442D46001B7AB1 /* PayOrRequestViewController.swift */,
+				1FFA7C7C23233E2C00ADA292 /* ShowRecipientTableViewCell.swift */,
+				1F610A59230BC0E800CB5CB4 /* Main.storyboard */,
+				1F610A5C230BC0EA00CB5CB4 /* Assets.xcassets */,
+				1F610A5E230BC0EA00CB5CB4 /* LaunchScreen.storyboard */,
+				1F610A61230BC0EA00CB5CB4 /* Info.plist */,
+			);
+			path = MyCoin;
+			sourceTree = "<group>";
+		};
+		1F610A69230BC0EA00CB5CB4 /* MyCoinTests */ = {
+			isa = PBXGroup;
+			children = (
+				1F610A6A230BC0EA00CB5CB4 /* MyCoinTests.swift */,
+				1F610A6C230BC0EA00CB5CB4 /* Info.plist */,
+			);
+			path = MyCoinTests;
+			sourceTree = "<group>";
+		};
+		1F610A74230BC0EA00CB5CB4 /* MyCoinUITests */ = {
+			isa = PBXGroup;
+			children = (
+				1F610A75230BC0EA00CB5CB4 /* MyCoinUITests.swift */,
+				1F610A77230BC0EA00CB5CB4 /* Info.plist */,
+			);
+			path = MyCoinUITests;
+			sourceTree = "<group>";
+		};
+		4D10DF228AD1330DFB5163AA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0E512F9E4CB57C264CF11EDD /* Pods_MyCoin.framework */,
+				8C0B9055AB5B3C4080C7C7F3 /* Pods_MyCoinTests.framework */,
+				12A6BCE3FA8BA312DDB9B3C7 /* Pods_MyCoinUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A607B30EA30659D6D6F4ADEE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3998427766B110112C583AC1 /* Pods-MyCoin.debug.xcconfig */,
+				E27DBDD28DBAEF02259D755C /* Pods-MyCoin.release.xcconfig */,
+				8745207F431A9B62AC5DB641 /* Pods-MyCoinTests.debug.xcconfig */,
+				E8EC4E0C0A748C512757012E /* Pods-MyCoinTests.release.xcconfig */,
+				E83DBD4EAF2E490658FB986F /* Pods-MyCoinUITests.debug.xcconfig */,
+				1A8C625DAF49E864E40EC7FA /* Pods-MyCoinUITests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1F610A51230BC0E800CB5CB4 /* MyCoin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1F610A7A230BC0EA00CB5CB4 /* Build configuration list for PBXNativeTarget "MyCoin" */;
+			buildPhases = (
+				D9FC0FB88434738CE107BD90 /* [CP] Check Pods Manifest.lock */,
+				1F610A4E230BC0E800CB5CB4 /* Sources */,
+				1F610A4F230BC0E800CB5CB4 /* Frameworks */,
+				1F610A50230BC0E800CB5CB4 /* Resources */,
+				147AA7952054DD7F8E8EE657 /* [CP] Embed Pods Frameworks */,
+				F804B89CFA142F57F59E5A62 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MyCoin;
+			productName = MyCoin;
+			productReference = 1F610A52230BC0E800CB5CB4 /* MyCoin.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1F610A65230BC0EA00CB5CB4 /* MyCoinTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1F610A7D230BC0EA00CB5CB4 /* Build configuration list for PBXNativeTarget "MyCoinTests" */;
+			buildPhases = (
+				43DDAFADAE27535ECE187813 /* [CP] Check Pods Manifest.lock */,
+				1F610A62230BC0EA00CB5CB4 /* Sources */,
+				1F610A63230BC0EA00CB5CB4 /* Frameworks */,
+				1F610A64230BC0EA00CB5CB4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1F610A68230BC0EA00CB5CB4 /* PBXTargetDependency */,
+			);
+			name = MyCoinTests;
+			productName = MyCoinTests;
+			productReference = 1F610A66230BC0EA00CB5CB4 /* MyCoinTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		1F610A70230BC0EA00CB5CB4 /* MyCoinUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1F610A80230BC0EA00CB5CB4 /* Build configuration list for PBXNativeTarget "MyCoinUITests" */;
+			buildPhases = (
+				200139670C4E2B4761C1D3DC /* [CP] Check Pods Manifest.lock */,
+				1F610A6D230BC0EA00CB5CB4 /* Sources */,
+				1F610A6E230BC0EA00CB5CB4 /* Frameworks */,
+				1F610A6F230BC0EA00CB5CB4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1F610A73230BC0EA00CB5CB4 /* PBXTargetDependency */,
+			);
+			name = MyCoinUITests;
+			productName = MyCoinUITests;
+			productReference = 1F610A71230BC0EA00CB5CB4 /* MyCoinUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1F610A4A230BC0E800CB5CB4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1030;
+				LastUpgradeCheck = 1030;
+				ORGANIZATIONNAME = jeff;
+				TargetAttributes = {
+					1F610A51230BC0E800CB5CB4 = {
+						CreatedOnToolsVersion = 10.3;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
+					};
+					1F610A65230BC0EA00CB5CB4 = {
+						CreatedOnToolsVersion = 10.3;
+						TestTargetID = 1F610A51230BC0E800CB5CB4;
+					};
+					1F610A70230BC0EA00CB5CB4 = {
+						CreatedOnToolsVersion = 10.3;
+						TestTargetID = 1F610A51230BC0E800CB5CB4;
+					};
+				};
+			};
+			buildConfigurationList = 1F610A4D230BC0E800CB5CB4 /* Build configuration list for PBXProject "MyCoin" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1F610A49230BC0E800CB5CB4;
+			productRefGroup = 1F610A53230BC0E800CB5CB4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1F610A51230BC0E800CB5CB4 /* MyCoin */,
+				1F610A65230BC0EA00CB5CB4 /* MyCoinTests */,
+				1F610A70230BC0EA00CB5CB4 /* MyCoinUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1F610A50230BC0E800CB5CB4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F610A86230BCB8E00CB5CB4 /* Podfile in Resources */,
+				1F610A60230BC0EA00CB5CB4 /* LaunchScreen.storyboard in Resources */,
+				1F610A84230BCA7B00CB5CB4 /* GoogleService-Info.plist in Resources */,
+				1F610A5D230BC0EA00CB5CB4 /* Assets.xcassets in Resources */,
+				1F610A5B230BC0E800CB5CB4 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F610A64230BC0EA00CB5CB4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F610A6F230BC0EA00CB5CB4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		147AA7952054DD7F8E8EE657 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyCoin/Pods-MyCoin-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyCoin/Pods-MyCoin-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyCoin/Pods-MyCoin-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		200139670C4E2B4761C1D3DC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MyCoinUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		43DDAFADAE27535ECE187813 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MyCoinTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D9FC0FB88434738CE107BD90 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MyCoin-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F804B89CFA142F57F59E5A62 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyCoin/Pods-MyCoin-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyCoin/Pods-MyCoin-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyCoin/Pods-MyCoin-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1F610A4E230BC0E800CB5CB4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1FFA7C7D23233E2C00ADA292 /* ShowRecipientTableViewCell.swift in Sources */,
+				1FFB830B2329F39200161330 /* AddCoinViewController.swift in Sources */,
+				1F864F6F23442D46001B7AB1 /* PayOrRequestViewController.swift in Sources */,
+				1FF5FD412328AE1F001652DD /* ShowCoinDetailsViewController.swift in Sources */,
+				1FF9D6882311304E006FC893 /* MainViewController.swift in Sources */,
+				1FACE256231E503E00DA37FB /* TransferViewController.swift in Sources */,
+				1F610A58230BC0E800CB5CB4 /* LoginViewController.swift in Sources */,
+				1FF5FD3B2328A3BA001652DD /* ShowCoinsViewController.swift in Sources */,
+				1F8D2101235B9D8E0074462F /* TransactionDetailViewController.swift in Sources */,
+				1FF97B5E23160D09002610BA /* TransactionTableViewCell.swift in Sources */,
+				1FF5FD392328A2F3001652DD /* ShowCoinTableViewCell.swift in Sources */,
+				1F7013A62359716C00FA7885 /* ProfileDetailViewController.swift in Sources */,
+				1F86631F2369473A007E3191 /* NotificationViewController.swift in Sources */,
+				1F7F090E2366AB17001A71C5 /* MenuTableViewCell.swift in Sources */,
+				1F0A4408232DA62F00C35DD6 /* FirebaseHelper.swift in Sources */,
+				1F0749FD233C1D3500778804 /* NewProfileViewController.swift in Sources */,
+				1F610A56230BC0E800CB5CB4 /* AppDelegate.swift in Sources */,
+				1FF39BFB2335814700E34CFB /* Constants.swift in Sources */,
+				1F86631D236944A3007E3191 /* SideMenuLogicViewController.swift in Sources */,
+				1F86631B2368AA00007E3191 /* PurchasesViewController.swift in Sources */,
+				1F85C8ED23659FA2007E3E73 /* SideMenuViewController.swift in Sources */,
+				1F775383235EDC13002B3772 /* TransactionDetailCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F610A62230BC0EA00CB5CB4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F610A6B230BC0EA00CB5CB4 /* MyCoinTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F610A6D230BC0EA00CB5CB4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F610A76230BC0EA00CB5CB4 /* MyCoinUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1F610A68230BC0EA00CB5CB4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1F610A51230BC0E800CB5CB4 /* MyCoin */;
+			targetProxy = 1F610A67230BC0EA00CB5CB4 /* PBXContainerItemProxy */;
+		};
+		1F610A73230BC0EA00CB5CB4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1F610A51230BC0E800CB5CB4 /* MyCoin */;
+			targetProxy = 1F610A72230BC0EA00CB5CB4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1F610A59230BC0E800CB5CB4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1F610A5A230BC0E800CB5CB4 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		1F610A5E230BC0EA00CB5CB4 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1F610A5F230BC0EA00CB5CB4 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1F610A78230BC0EA00CB5CB4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1F610A79230BC0EA00CB5CB4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1F610A7B230BC0EA00CB5CB4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3998427766B110112C583AC1 /* Pods-MyCoin.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MyCoin/MyCoin.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 32X47N5V6X;
+				INFOPLIST_FILE = MyCoin/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.2019.Jeff.G.MyCoin;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1F610A7C230BC0EA00CB5CB4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E27DBDD28DBAEF02259D755C /* Pods-MyCoin.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MyCoin/MyCoin.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 32X47N5V6X;
+				INFOPLIST_FILE = MyCoin/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.2019.Jeff.G.MyCoin;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		1F610A7E230BC0EA00CB5CB4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8745207F431A9B62AC5DB641 /* Pods-MyCoinTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MyCoinTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.2019.Jeff.G.MyCoinTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyCoin.app/MyCoin";
+			};
+			name = Debug;
+		};
+		1F610A7F230BC0EA00CB5CB4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E8EC4E0C0A748C512757012E /* Pods-MyCoinTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MyCoinTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.2019.Jeff.G.MyCoinTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyCoin.app/MyCoin";
+			};
+			name = Release;
+		};
+		1F610A81230BC0EA00CB5CB4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E83DBD4EAF2E490658FB986F /* Pods-MyCoinUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MyCoinUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.2019.Jeff.G.MyCoinUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MyCoin;
+			};
+			name = Debug;
+		};
+		1F610A82230BC0EA00CB5CB4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1A8C625DAF49E864E40EC7FA /* Pods-MyCoinUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MyCoinUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.2019.Jeff.G.MyCoinUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MyCoin;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1F610A4D230BC0E800CB5CB4 /* Build configuration list for PBXProject "MyCoin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F610A78230BC0EA00CB5CB4 /* Debug */,
+				1F610A79230BC0EA00CB5CB4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1F610A7A230BC0EA00CB5CB4 /* Build configuration list for PBXNativeTarget "MyCoin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F610A7B230BC0EA00CB5CB4 /* Debug */,
+				1F610A7C230BC0EA00CB5CB4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1F610A7D230BC0EA00CB5CB4 /* Build configuration list for PBXNativeTarget "MyCoinTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F610A7E230BC0EA00CB5CB4 /* Debug */,
+				1F610A7F230BC0EA00CB5CB4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1F610A80230BC0EA00CB5CB4 /* Build configuration list for PBXNativeTarget "MyCoinUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F610A81230BC0EA00CB5CB4 /* Debug */,
+				1F610A82230BC0EA00CB5CB4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1F610A4A230BC0E800CB5CB4 /* Project object */;
+}
