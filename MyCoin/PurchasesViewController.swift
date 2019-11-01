@@ -103,7 +103,7 @@ class PurchasesViewController: SideMenuLogicViewController {
         guard let currUser = self.currUser else { return }
         
         self.transactionData = [Transaction]()
-        FirebaseHelper.sharedInstance.fetchPurchasesTransactions(withUserId: currUser.id, viewController: self) { (snapshot) in
+        FirebaseHelper.sharedInstance.fetchPurchasesTransactions(user: currUser, viewController: self) { (snapshot) in
             for snap in snapshot {
                 if let value = snap.value as? NSDictionary {
                     self.transactionData.append(parseTransactionSnapshot(value: value, transId: snap.key))

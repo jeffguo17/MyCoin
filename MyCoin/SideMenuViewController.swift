@@ -14,7 +14,7 @@ class SideMenuViewController: UIViewController {
     var profileImageURL = ""
     var userFullName = "A A"
     var totalNumCoins = 0
-    var menuIconsText = ["Home", "Coins", "Purchases", "Receives", "Notifications", "Incomplete",]
+    var menuIconsText = ["Home", "Coins", "Purchases", "Receives", "Notifications"]
     var menuiConsImage = [#imageLiteral(resourceName: "home"),#imageLiteral(resourceName: "money"),#imageLiteral(resourceName: "receipt"),#imageLiteral(resourceName: "present"),#imageLiteral(resourceName: "notification"),#imageLiteral(resourceName: "incomplete")]
     weak var delegate: SideMenuViewControllerDelegate?
     
@@ -94,7 +94,7 @@ class SideMenuViewController: UIViewController {
         return view
     }()
     
-    fileprivate let menuTableView: UITableView = {
+    let menuTableView: UITableView = {
         let tableView = UITableView()
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -211,7 +211,8 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
         case "Purchases": delegate?.purchasesPressed()
         case "Receives": delegate?.receivesPressed()
         case "Notifications": delegate?.notificationsPressed()
-        case "Incomplete": delegate?.incompletePressed()
+        //case "SignOut":  delegate?.signOut()
+        //case "Incomplete": delegate?.incompletePressed()
         default: print()
         }
     }
@@ -233,5 +234,6 @@ protocol SideMenuViewControllerDelegate: class {
     func purchasesPressed()
     func receivesPressed()
     func notificationsPressed()
-    func incompletePressed()
+    //func incompletePressed()
+    //func signOut()
 }

@@ -56,7 +56,8 @@ class AddCoinViewController: UIViewController {
         if coinImageView.image == defaultAddImage {
             FirebaseHelper.sharedInstance.uploadCoinToDatabase(currUser: currUser, name: name, viewController: self) { (coinId) in
                 if let mainVC = self.navigationController?.viewControllers.first as? MainViewController {
-                    mainVC.addNewCoin(coin: Coin(name: name, imageURL: "", id: coinId, amount: -1) )
+                    let coin = Coin(name: name, imageURL: "", id: coinId, amount: -1)
+                    self.updateMainVC(selectSideMenuNum: 0, newCoin: coin, mainVC: mainVC)
                 }
                 self.navigationController?.popToRootViewController(animated: true)
             }
@@ -65,12 +66,18 @@ class AddCoinViewController: UIViewController {
             FirebaseHelper.sharedInstance
                 .uploadCoinToDatabase(currUser: currUser, name: name, image: image, viewController: self) { (imageURL, coinId, error) in
                     if error == nil, let mainVC = self.navigationController?.viewControllers.first as? MainViewController {
-                        mainVC.addNewCoin(coin: Coin(name: name, imageURL: imageURL, id: coinId, amount: -1))
+                        let coin = Coin(name: name, imageURL: imageURL, id: coinId, amount: -1)
+                        self.updateMainVC(selectSideMenuNum: 0, newCoin: coin, mainVC: mainVC)
                     }
                     self.navigationController?.popToRootViewController(animated: true)
             }
         }
         
+    }
+    
+    fileprivate func updateMainVC(selectSideMenuNum: Int, newCoin: Coin, mainVC: MainViewController) {
+        mainVC.selectSideMenuRow(num: selectSideMenuNum)
+        mainVC.addNewCoin(coin: newCoin)
     }
     
     @objc fileprivate func coinImageViewTapped(tapGestureRecognizer: UITapGestureRecognizer) {

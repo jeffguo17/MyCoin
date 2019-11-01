@@ -48,14 +48,14 @@ class TransactionTableViewCell: UITableViewCell, UITextViewDelegate {
         return textView
     }()
     
-    fileprivate let messageView: UITextView = {
-        let textView = UITextView()
-        textView.isUserInteractionEnabled = false
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.isScrollEnabled = false
-        textView.textContainer.lineBreakMode = .byTruncatingTail
-        textView.font = .systemFont(ofSize: 18)
-        return textView
+    let messageView: UILabel = {
+        let textLabel = UILabel()
+        textLabel.isUserInteractionEnabled = false
+        textLabel.translatesAutoresizingMaskIntoConstraints = false
+        textLabel.numberOfLines = 2
+        textLabel.lineBreakMode = .byTruncatingTail
+        textLabel.textAlignment = .left
+        return textLabel
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -83,10 +83,10 @@ class TransactionTableViewCell: UITableViewCell, UITextViewDelegate {
         timeStampView.topAnchor.constraint(equalTo: headerView.bottomAnchor).isActive = true
         timeStampView.leadingAnchor.constraint(equalTo: headerView.leadingAnchor).isActive = true
         timeStampView.trailingAnchor.constraint(equalTo: headerView.trailingAnchor).isActive = true
-        timeStampView.heightAnchor.constraint(equalToConstant: 20.0).isActive = true
+        timeStampView.heightAnchor.constraint(equalToConstant: 22.0).isActive = true
         
         messageView.topAnchor.constraint(equalTo: timeStampView.bottomAnchor).isActive = true
-        messageView.leadingAnchor.constraint(equalTo: headerView.leadingAnchor).isActive = true
+        messageView.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 5).isActive = true
         messageView.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -15).isActive = true
         messageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
@@ -105,29 +105,44 @@ class TransactionTableViewCell: UITableViewCell, UITextViewDelegate {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        guard let sender = self.sender, let recipient = recipient, let currUser = self.currUser else { return }
         
-        if let senderName = self.sender?.fullName, let recipientName = self.recipient?.fullName {
-            let senderNameText = NSMutableAttributedString(string: senderName)
-            senderNameText.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 17), range: NSMakeRange(0, senderNameText.length))
-            senderNameText.addAttribute(NSAttributedString.Key.link, value: "senderNameTapped", range: NSMakeRange(0, senderNameText.length))
-            
-            let recipientNameText = NSMutableAttributedString(string: recipientName)
-            recipientNameText.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 17), range: NSMakeRange(0, recipientNameText.length))
-            recipientNameText.addAttribute(NSAttributedString.Key.link, value: "recipientNameTapped", range: NSMakeRange(0, recipientNameText.length))
-            
-            let message = NSMutableAttributedString(string: " paid ")
-            message.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 17), range: NSMakeRange(0, message.length))
-            message.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.gray, range: NSMakeRange(0, message.length))
-            
-            senderNameText.append(message)
-            senderNameText.append(recipientNameText)
-            
-            headerView.attributedText = senderNameText
+        let senderName = sender.fullName
+        let recipientName = recipient.fullName
+        
+        var senderNameText = NSMutableAttributedString(string: "You")
+        if sender.id != currUser.id {
+            senderNameText = NSMutableAttributedString(string: senderName)
         }
+        senderNameText.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 17), range: NSMakeRange(0, senderNameText.length))
+        senderNameText.addAttribute(NSAttributedString.Key.link, value: "senderNameTapped", range: NSMakeRange(0, senderNameText.length))
+            
+        var recipientNameText = NSMutableAttributedString(string: "You")
+        if recipient.id != currUser.id {
+            recipientNameText = NSMutableAttributedString(string : recipientName)
+        }
+        recipientNameText.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 17), range: NSMakeRange(0, recipientNameText.length))
+        recipientNameText.addAttribute(NSAttributedString.Key.link, value: "recipientNameTapped", range: NSMakeRange(0, recipientNameText.length))
+            
+        let message = NSMutableAttributedString(string: " paid ")
+        message.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 17), range: NSMakeRange(0, message.length))
+        message.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.gray, range: NSMakeRange(0, message.length))
+            
+        senderNameText.append(message)
+        senderNameText.append(recipientNameText)
+            
+        headerView.attributedText = senderNameText
         
-        if let message = message {
+        if let message = self.message {
             messageView.text = message
+            
+            if message.containsOnlyEmoji {
+                messageView.font = .systemFont(ofSize: 30.0)
+            } else {
+                messageView.font = .systemFont(ofSize: 18.0)
+            }
         }
+        
         if let profileImage = profileImage {
             profileImageView.image = profileImage
         }

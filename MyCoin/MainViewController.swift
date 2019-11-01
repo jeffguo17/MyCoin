@@ -11,6 +11,7 @@ import SDWebImage
 import InitialsImageView
 import FirebaseDatabase
 import SideMenu
+import Firebase
 
 class MainViewController: SideMenuLogicViewController {
     
@@ -178,8 +179,9 @@ class MainViewController: SideMenuLogicViewController {
                 
                 let fullName = value?["name"] as? String ?? ""
                 let profileImage = value?["image"] as? String ?? ""
+                let phoneNumber = value?["phoneNumber"] as? String ?? ""
                 
-                let recentPerson = RecentPerson(fullName: fullName, profileImage: profileImage, id: snap.key)
+                let recentPerson = RecentPerson(fullName: fullName, profileImage: profileImage, id: snap.key, phoneNumber: phoneNumber)
                 self.recentPeopleData.append(recentPerson)
             }
             completion()
@@ -229,7 +231,13 @@ class MainViewController: SideMenuLogicViewController {
     fileprivate func updateSideMenuTotalNumCoins() {
         if let leftMenuNavigationController = self.leftMenuNavigationController {
             if let sideMenuVC = leftMenuNavigationController.viewControllers.first as? SideMenuViewController {
-                sideMenuVC.updateTotalNumCoins(totalNumCoins: self.createdCoinData.count + self.ownedByCoinData.count)
+                
+                var numCreatedCoins = self.createdCoinData.count
+                if self.createdCoinData.last?.imageURL == "addCoin" {
+                    numCreatedCoins -= 1
+                }
+                
+                sideMenuVC.updateTotalNumCoins(totalNumCoins: numCreatedCoins + self.ownedByCoinData.count)
             }
         }
     }
@@ -253,7 +261,7 @@ class MainViewController: SideMenuLogicViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.title = "MyCoin"
+        self.title = "DA Exchange"
         
         navigationController?.navigationBar.backgroundColor = .white
         navigationController?.navigationBar.isTranslucent = false
@@ -301,7 +309,12 @@ class MainViewController: SideMenuLogicViewController {
         sideMenuVC.delegate = self
         sideMenuVC.profileImageURL = currUser.profileImage
         sideMenuVC.userFullName = FirebaseHelper.sharedInstance.getPrettyName(firstName: currUser.firstName, lastName: currUser.lastName)
-        sideMenuVC.totalNumCoins = self.createdCoinData.count + self.ownedByCoinData.count
+        
+        var numCreatedCoins = self.createdCoinData.count
+        if self.createdCoinData.last?.imageURL == "addCoin" {
+            numCreatedCoins -= 1
+        }
+        sideMenuVC.totalNumCoins = numCreatedCoins + self.ownedByCoinData.count
         
         self.leftMenuNavigationController = SideMenuNavigationController(rootViewController: sideMenuVC)
         
@@ -320,6 +333,13 @@ class MainViewController: SideMenuLogicViewController {
         // Note that these continue to work on the Navigation Controller independent of the view controller it displays!
         SideMenuManager.default.addPanGestureToPresent(toView: self.navigationController!.navigationBar)
         SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: self.navigationController!.view, forMenu: .left)
+    }
+    
+    func selectSideMenuRow(num: Int) {
+        if let sideMenuVC = self.leftMenuNavigationController?.viewControllers.first as? SideMenuViewController {
+            let indexPath = IndexPath(row: num, section: 0)
+            sideMenuVC.menuTableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+        }
     }
 }
 
@@ -349,6 +369,13 @@ extension MainViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if self.createdCoinData[indexPath.row].imageURL == "addCoin" {
+            self.selectSideMenuRow(num: 1)
+            self.coinsViewTapped()
+            return
+        }
+        
         let showCoinDetailsVC = ShowCoinDetailsViewController()
         showCoinDetailsVC.currCoin = self.createdCoinData[indexPath.row]
         showCoinDetailsVC.currUser = self.currUser
@@ -384,7 +411,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             cell.profileImageView.sd_setImage(with: URL(string: fromUser.profileImage), completed: nil)
         }
         
-        cell.layoutSubviews()
         return cell
     }
     
@@ -487,6 +513,7 @@ extension MainViewController: SideMenuViewControllerDelegate {
     
     func notificationsPressed() {
         self.dismissSideMenu {
+            
             let lastVC = self.getLastVC()
             
             if !(lastVC is NotificationViewController) {
@@ -498,12 +525,24 @@ extension MainViewController: SideMenuViewControllerDelegate {
             }
         }
     }
-    
+    /*
     func incompletePressed() {
         self.dismissSideMenu {
             showAlertMessage(title: "Coming Soon", message: "", actionMessage: "OK", navigationController: self.navigationController)
         }
     }
+    */
+    
+    /*
+    func signOut() {
+        do {
+            try Auth.auth().signOut()
+            print("hello")
+        } catch {
+            
+        }
+    }
+    */
 }
 
 class CoinViewCell: UICollectionViewCell {

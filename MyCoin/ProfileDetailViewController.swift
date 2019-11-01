@@ -64,7 +64,7 @@ class ProfileDetailViewController: UIViewController {
     @objc func payOrRequestTapped() {
         guard let selectedUser = selectedUser else { return }
         
-        let selectedPerson = RecentPerson(fullName: selectedUser.fullName, profileImage: selectedUser.profileImage, id: selectedUser.id)
+        let selectedPerson = RecentPerson(fullName: selectedUser.fullName, profileImage: selectedUser.profileImage, id: selectedUser.id, phoneNumber: selectedUser.phoneNumber)
         
         showPayOrRequestVC(createdCoinData: self.createdCoinData, ownedByCoinData: self.ownedByCoinData, currUser: self.currUser, recipientPerson: selectedPerson, navigationController: self.navigationController)
     }
@@ -130,7 +130,8 @@ class ProfileDetailViewController: UIViewController {
 
     fileprivate func viewLayoutIfCurrUser() {
         guard let selectedUser = selectedUser, let currUser = currUser else { return }
-        if selectedUser.id != currUser.id {
+        
+        if selectedUser.id == currUser.id {
             payOrRequestButton.isHidden = true
             transactionView.topAnchor.constraint(equalTo: lineSeparator.bottomAnchor).isActive = true
         } else {
@@ -148,7 +149,8 @@ class ProfileDetailViewController: UIViewController {
     }
     
     fileprivate func fetchRecentTransactions() {
-        guard let selectedUser = selectedUser else { return }
+        guard let selectedUser = self.selectedUser else { return }
+        
         FirebaseHelper.sharedInstance.fetchTransactions(withUserId: selectedUser.id) { (transactionData) in
             self.transactionData = transactionData
             self.transactionView.reloadData()

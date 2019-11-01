@@ -177,7 +177,7 @@ class PayOrRequestViewController: UIViewController, UITextViewDelegate, UITextFi
             return
         }
         
-        guard let currUser = self.currUser, let selectedCoin = self.selectedCoin else { return }
+        guard let currUser = self.currUser, let selectedCoin = self.selectedCoin, let recipientUser = self.recipientPerson else { return }
         
         if checkAmountAndNote() {
             guard let amountText = amountTextField.text, let amountNum = Double(amountText) else { return }
@@ -187,7 +187,7 @@ class PayOrRequestViewController: UIViewController, UITextViewDelegate, UITextFi
                 return
             }
             
-            FirebaseHelper.sharedInstance.payUser(withPhoneNumber: "+14155357837", message: noteTextView.text, currUser: currUser, selectedCoin: selectedCoin, amount: amountText, viewController: self) {
+            FirebaseHelper.sharedInstance.payUser(withPhoneNumber: recipientUser.phoneNumber, message: noteTextView.text, currUser: currUser, selectedCoin: selectedCoin, amount: amountText, viewController: self) {
                 if let mainVC = self.navigationController?.viewControllers.first as? MainViewController {
                     mainVC.transUpdate = true
                 }
@@ -201,7 +201,6 @@ class PayOrRequestViewController: UIViewController, UITextViewDelegate, UITextFi
         if checkAmountAndNote() {
             
         }
-        //FirebaseHelper.sharedInstance.payUser(withPhoneNumber: "+14155357837", message: "hello", user: currUser)
     }
     
     fileprivate func presentShowCoinsVC() {

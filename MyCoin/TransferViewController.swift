@@ -19,10 +19,11 @@ class TransferViewController: UIViewController, UITextFieldDelegate {
     fileprivate let searchView: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.attributedPlaceholder = NSAttributedString(string: "Name, Phone Number", attributes: [
+        textField.attributedPlaceholder = NSAttributedString(string: "Phone Number", attributes: [
             .foregroundColor: UIColor.lightGray,
             .font: UIFont.systemFont(ofSize: 15.0)
             ])
+        textField.returnKeyType = UIReturnKeyType.search
         return textField
     }()
     
@@ -125,7 +126,7 @@ class TransferViewController: UIViewController, UITextFieldDelegate {
                     return
                 }
                 
-                let recipientPerson = RecentPerson(fullName: FirebaseHelper.sharedInstance.getPrettyName(firstName: recipientUser.firstName, lastName: recipientUser.lastName), profileImage: recipientUser.profileImage, id: recipientUser.id)
+                let recipientPerson = RecentPerson(fullName: FirebaseHelper.sharedInstance.getPrettyName(firstName: recipientUser.firstName, lastName: recipientUser.lastName), profileImage: recipientUser.profileImage, id: recipientUser.id, phoneNumber: recipientUser.phoneNumber)
                 
                 showPayOrRequestVC(createdCoinData: self.createdCoinData, ownedByCoinData: self.ownedByCoinData, currUser: self.currUser, recipientPerson: recipientPerson, navigationController: self.navigationController)
             }
@@ -153,6 +154,7 @@ extension TransferViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         showPayOrRequestVC(createdCoinData: self.createdCoinData, ownedByCoinData: self.ownedByCoinData, currUser: self.currUser, recipientPerson: self.recentPeopleData[indexPath.row], navigationController: self.navigationController)
     }
     

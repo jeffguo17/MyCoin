@@ -309,7 +309,7 @@ class FirebaseHelper {
     func fetchTransactions(withUserId: String, completion: @escaping (([Transaction]) -> Void)) {
         var transactionData = [Transaction]()
         
-        let ref = (Database.database().reference().child("users").child(withUserId).child("recentTrans")).queryLimited(toLast: 15)
+        let ref = Database.database().reference().child("users").child(withUserId).child("recentTrans").queryLimited(toLast: 15)
         ref.observeSingleEvent(of: .value, with: { (userSnapshot) in
             for snap in userSnapshot.children {
                 let snap = snap as! DataSnapshot
@@ -330,11 +330,11 @@ class FirebaseHelper {
         }
     }
     
-    func fetchReceivesTransactions(withUserId: String, viewController: UIViewController, completion: @escaping ([DataSnapshot]) -> Void) {
+    func fetchReceivesTransactions(user: User, viewController: UIViewController, completion: @escaping ([DataSnapshot]) -> Void) {
         let message = loadingIndicator.message
         loadingIndicator.message = "Loading..."
         viewController.present(loadingIndicator, animated: true) {
-            let ref = Database.database().reference().child("trans").queryOrdered(byChild: "to/\(withUserId)").queryLimited(toLast: 20)
+            let ref = Database.database().reference().child("trans").queryOrdered(byChild: "to/\(user.id)/phoneNumber").queryEqual(toValue: user.phoneNumber).queryLimited(toLast: 20)
             ref.observeSingleEvent(of: .value, with: { (snapshot) in
                 if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
                     viewController.dismiss(animated: true) {
@@ -348,11 +348,12 @@ class FirebaseHelper {
         }
     }
     
-    func fetchPurchasesTransactions(withUserId: String,viewController: UIViewController, completion: @escaping ([DataSnapshot]) -> Void) {
+    func fetchPurchasesTransactions(user: User,viewController: UIViewController, completion: @escaping ([DataSnapshot]) -> Void) {
         let message = loadingIndicator.message
         loadingIndicator.message = "Loading..."
         viewController.present(loadingIndicator, animated: true) {
-            let ref = Database.database().reference().child("trans").queryOrdered(byChild: "from/\(withUserId)").queryLimited(toLast: 20)
+            
+            let ref = Database.database().reference().child("trans").queryOrdered(byChild: "from/\(user.id)/phoneNumber").queryEqual(toValue: user.phoneNumber).queryLimited(toLast: 20)
             ref.observeSingleEvent(of: .value, with: { (snapshot) in
                 if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
                     viewController.dismiss(animated: true) {
@@ -452,6 +453,12 @@ class FirebaseHelper {
     
     fileprivate func updateSenderCoinAmount(selectedCoin: Coin, sender: User, amount: String, transId: String, completion: @escaping (String?) -> Void) {
         if selectedCoin.amount == -1 {
+            
+            let senderRecentTransRef = Database.database().reference().child("users")
+                .child(sender.id).child("recentTrans")
+            
+            senderRecentTransRef.updateChildValues([transId: true])
+            
             completion(nil)
             return
         }
@@ -471,6 +478,7 @@ class FirebaseHelper {
                 return
             }
             let finalAmount = roundAmountNum(amount: diffAmount)
+            
             let coinRefValue = ["amount": finalAmount]
             
             coinRef.updateChildValues(coinRefValue) { _,_ in
@@ -558,7 +566,6 @@ class FirebaseHelper {
         let ref = Database.database().reference().child("users").queryOrdered(byChild: "profile/phoneNumber").queryEqual(toValue: withPhoneNumber)
         
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
-            
             for snap in snapshot.children {
                 let userSnapshot = snap as! DataSnapshot
                 let dict = userSnapshot.value as! [String: NSDictionary]
