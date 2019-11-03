@@ -49,7 +49,7 @@ class ShowCoinsViewController: SideMenuLogicViewController {
         self.coinData.append(self.ownedByCoinData)
         
         view.backgroundColor = UIColor.white
-        self.title = "Coins"
+        self.title = "My Wallet"
         
         if payOrRequest == false {
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addCoin))

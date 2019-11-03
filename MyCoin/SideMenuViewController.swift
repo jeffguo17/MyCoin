@@ -14,7 +14,7 @@ class SideMenuViewController: UIViewController {
     var profileImageURL = ""
     var userFullName = "A A"
     var totalNumCoins = 0
-    var menuIconsText = ["Home", "Coins", "Purchases", "Receives", "Notifications"]
+    var menuIconsText = ["Home", "My Wallet", "Purchases", "Receives", "Notifications"]
     var menuiConsImage = [#imageLiteral(resourceName: "home"),#imageLiteral(resourceName: "money"),#imageLiteral(resourceName: "receipt"),#imageLiteral(resourceName: "present"),#imageLiteral(resourceName: "notification"),#imageLiteral(resourceName: "incomplete")]
     weak var delegate: SideMenuViewControllerDelegate?
     
@@ -207,7 +207,7 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (menuIconsText[indexPath.row]) {
         case "Home": delegate?.homePressed()
-        case "Coins": delegate?.coinsPressed()
+        case "My Wallet": delegate?.coinsPressed()
         case "Purchases": delegate?.purchasesPressed()
         case "Receives": delegate?.receivesPressed()
         case "Notifications": delegate?.notificationsPressed()

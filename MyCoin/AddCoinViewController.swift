@@ -135,6 +135,13 @@ extension AddCoinViewController: UIImagePickerControllerDelegate, UINavigationCo
         alertController.addAction(photoLibraryAction)
         alertController.addAction(cameraAction)
         alertController.addAction(cancelAction)
+        
+        //iPad popover presentation controller fixes
+        if let popoverController = alertController.popoverPresentationController {
+            popoverController.sourceView = self.coinImageView
+            popoverController.sourceRect = self.coinImageView.bounds
+        }
+        
         self.present(alertController, animated: true, completion: nil)
     }
     

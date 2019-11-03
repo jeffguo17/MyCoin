@@ -129,6 +129,13 @@ extension NewProfileViewController: UIImagePickerControllerDelegate, UINavigatio
         alertController.addAction(photoLibraryAction)
         alertController.addAction(cameraAction)
         alertController.addAction(cancelAction)
+        
+        //iPad popover presentation controller fixes
+        if let popoverController = alertController.popoverPresentationController {
+            popoverController.sourceView = self.lastNameTextField
+            popoverController.sourceRect = self.lastNameTextField.bounds
+        }
+        
         self.present(alertController, animated: true, completion: nil)
     }
     
