@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ChameleonFramework
 
 class ShowCoinTableViewCell: UITableViewCell {
 
@@ -20,7 +19,7 @@ class ShowCoinTableViewCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isUserInteractionEnabled = false
         view.font = .systemFont(ofSize: 17)
-        view.textColor = UIColor.flatBlack
+        view.textColor = UIColor(red:0.30, green:0.30, blue:0.30, alpha:1.0)
         return view
     }()
     
@@ -38,7 +37,7 @@ class ShowCoinTableViewCell: UITableViewCell {
         view.isUserInteractionEnabled = false
         view.font = .systemFont(ofSize: 17)
         view.textAlignment = .right
-        view.textColor = UIColor.flatOrange
+        view.textColor = UIColor(red:0.90, green:0.49, blue:0.13, alpha:1.0)
         return view
     }()
     

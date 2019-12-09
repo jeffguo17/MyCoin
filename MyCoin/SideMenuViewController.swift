@@ -115,7 +115,7 @@ class SideMenuViewController: UIViewController {
         textView.textAlignment = .left
         textView.font = .systemFont(ofSize: 12)
         textView.text = (Bundle.main.displayName ?? "This App") + " is made by Jeff Guo."
-        textView.textColor = UIColor.flatGray
+        textView.textColor = UIColor.gray
         return textView
     }()
     

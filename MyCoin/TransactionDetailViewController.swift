@@ -160,7 +160,7 @@ class TransactionDetailViewController: MessageViewController, UITextViewDelegate
         coinAmountTextView.isHidden = false
         coinAmountTextView.text = self.transAmount
         coinAmountTextView.font = .systemFont(ofSize: 14.0)
-        coinAmountTextView.textColor = UIColor.flatGreenDark
+        coinAmountTextView.textColor = UIColor.green
     }
     
     fileprivate func setupCommentViews(commentUsersIndex: Int, profileImageView: UIImageView, headerView: unselectableTextView, messageTextView: UITextView, timeStampView: UITextView) {

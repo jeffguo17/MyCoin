@@ -34,7 +34,7 @@ class ShowCoinDetailsViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.text = ""
         view.font = .systemFont(ofSize: 20)
-        view.textColor = UIColor.flatBlackDark
+        view.textColor = UIColor.black
         view.textContainer.maximumNumberOfLines = 1
         view.textContainer.lineBreakMode = .byTruncatingTail
         return view
@@ -46,7 +46,7 @@ class ShowCoinDetailsViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.text = ""
         view.font = .systemFont(ofSize: 8)
-        view.textColor = UIColor.flatWhiteDark
+        view.textColor = UIColor.white
         view.textContainer.maximumNumberOfLines = 1
         view.textAlignment = .right
         view.textContainer.lineBreakMode = .byTruncatingTail
@@ -113,7 +113,7 @@ class ShowCoinDetailsViewController: UIViewController {
             self.ownershipTableView.deselectRow(at: index, animated: true)
         }
     
-        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.flatOrange]
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.orange]
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
     
@@ -216,7 +216,7 @@ class ShowCoinDetailsViewController: UIViewController {
     }
 
     override func willMove(toParent parent: UIViewController?) {
-        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.flatBlack]
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
     

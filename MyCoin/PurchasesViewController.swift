@@ -6,7 +6,6 @@
 //  Copyright © 2019 jeff. All rights reserved.
 //
 
-import ChameleonFramework
 import UIKit
 import Firebase
 import SideMenu
@@ -31,7 +30,7 @@ class PurchasesViewController: SideMenuLogicViewController {
         textView.textContainer.lineBreakMode = .byTruncatingTail
         textView.textAlignment = .left
         textView.font = .systemFont(ofSize: 15)
-        textView.backgroundColor = UIColor.flatWhite
+        textView.backgroundColor = UIColor.white
         return textView
     }()
     
@@ -64,7 +63,7 @@ class PurchasesViewController: SideMenuLogicViewController {
         super.viewDidLoad()
 
         self.title = self.titleText
-        view.backgroundColor = UIColor.flatWhite
+        view.backgroundColor = UIColor.white
         addSideMenu()
         
         view.addSubview(headerTextView)
@@ -227,7 +226,7 @@ extension PurchasesViewController: UITableViewDelegate, UITableViewDataSource {
         coinAmountTextView.isHidden = false
         coinAmountTextView.text = coinAmount
         coinAmountTextView.font = .systemFont(ofSize: 14.0)
-        coinAmountTextView.textColor = UIColor.flatGreenDark
+        coinAmountTextView.textColor = UIColor.green
     }
     
 }

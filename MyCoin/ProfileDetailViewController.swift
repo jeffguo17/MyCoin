@@ -80,7 +80,7 @@ class ProfileDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.flatBlack]
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         
         // Do any additional setup after loading the view.
